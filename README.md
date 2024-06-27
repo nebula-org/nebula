@@ -50,7 +50,7 @@ accounts[10].transfer(product, "3 ether")
 
 usdc.transfer(owner, 10 \*\* 8, { "from": instanceOperator })
 
-usdc.approve(instanceService.getTreasuryAddress(), 10 \*\* 8, { "from": owner })
+usdc.approve(instanceService.getTreasuryAddress(), 10 ** 8, { "from": owner })
 
 6. Add owner and nominee to metamask and import usdc token
 
@@ -62,14 +62,7 @@ add usdc
 
 5. Apply and underwrite policy
 
-policy_tx = product.applyForPolicy("dpk@abc.com", 20, 1, nominee.address, "LIFE", 10 \*\* 8, { "from": owner })
-
-# on sepolia
-
-nominee = accounts[9]
-customer = accounts[8]
-product = NebulaProduct[0]
-policy_tx = product.applyForPolicy("dpk1@gmail.com", 20, 1, nominee.address, "LIFE", 10 \*\* 7, { "from": customer })
+policy_tx = product.applyForPolicy("dpk@abc.com", 20, 1, nominee.address, "LIFE", 10 ** 8, { "from": owner })
 
 processId = policy_tx.events['LogApplicationCreated'][0]['processId']
 
@@ -105,12 +98,12 @@ usdc.allowance(escrow, arbitrator) is sumInsured
    tx_rel = escrow.releaseFunds({ "from": riskpoolWallet })
    Payee can also release funds after time window: 10 minutes
 
-escrow.reclaimFunds({"from": riskpoolWallet, "amount": 10 \*\* 15 })
+escrow.reclaimFunds({"from": riskpoolWallet, "amount": 10 ** 15 })
 escrow.status() is now 1 ie Reclaimed
 
 9. Payee should deposit arbitration fee beofre window expires
 
-escrow.depositArbitrationFeeForPayee({"from": nominee, "amount": 10 \*\* 15 })
+escrow.depositArbitrationFeeForPayee({"from": nominee, "amount": 10 ** 15 })
 
 escrow.status() is now 2 ie Disputed
 
